@@ -1,0 +1,19 @@
+{
+  "name": "com.chinact.mobile.plugin.savephoto",
+  "version": "1.0.0",
+  "description": "Save Photo To System Album",
+  "cordova": {
+    "id": "com.chinact.mobile.plugin.savephoto",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Dante Lee",
+  "license": "ISC"
+}

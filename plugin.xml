@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.chinact.mobile.plugin.savephoto" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>SavePhoto</name>
+	<js-module name="SavePhoto" src="www/SavePhoto.js">
+		<clobbers target="navigator.savePhoto" />
+	</js-module>
+	<dependency id="cordova-plugin-file-transfer" />
+	<preference name="FLODER_NAME" default=""/>
+    <preference name="IOS_DESC" default="请点击'好'以允许访问。"/>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="SavePhoto">
+				<param name="android-package" value="com.chinact.mobile.plugin.savephoto.SavePhoto" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml">
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+		</config-file>
+		<config-file parent="/manifest/application" target="AndroidManifest.xml" >
+            <meta-data android:name="com.chinact.mobile.plugin.savephoto.FLODER_NAME" android:value="$FLODER_NAME"/>
+        </config-file>
+		<source-file src="src/android/SavePhoto.java" target-dir="src/com/chinact/mobile/plugin/savephoto" />
+	</platform>
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="SavePhoto">
+				<param name="ios-package" value="SavePhoto" />
+			</feature>
+		</config-file>
+        <config-file parent="NSPhotoLibraryAddUsageDescription" target="*-Info.plist">
+            <string>$IOS_DESC</string>
+        </config-file>
+        <config-file parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
+            <string>$IOS_DESC</string>
+        </config-file>
+		<config-file parent="SavePhoto" target="*-Info.plist">
+            <dict>
+                <key>FLODER_NAME</key>
+                <string>$FLODER_NAME</string>
+            </dict>
+        </config-file>
+        <source-file src="src/ios/SavePhoto.h" />
+		<source-file src="src/ios/SavePhoto.m" />
+	</platform>
+</plugin>
